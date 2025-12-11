@@ -36,27 +36,28 @@ export default function Home() {
             View real-time availability and book your appointments in just a few clicks.
           </p>
         </div>
+        <div className="text-center">
+        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <Clock className="w-6 h-6 text-primary" />
+        </div>
+        <h3 className="font-semibold mb-2">Save Time</h3>
+        <p className="text-sm text-muted-foreground">
+          No phone calls needed. Book 24/7 at your convenience
+        </p>
+      </div>
+        
+      <div className="text-center">
+        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+          <CreditCard className="w-6 h-6 text-primary" />
+        </div>
+        <h3 className="font-semibold mb-2">Secure Payments</h3>
+        <p className="text-sm text-muted-foreground">
+          Pay online securely with Stripe
+        </p>
+      </div>
       </div>
 
-      <div className="text-center">
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <Clock className="w-6 h-6 text-primary" />
-          </div>
-          <h3 className="font-semibold mb-2">Save Time</h3>
-          <p className="text-sm text-muted-foreground">
-            No phone calls needed. Book 24/7 at your convenience
-          </p>
-        </div>
-        
-        <div className="text-center">
-          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <CreditCard className="w-6 h-6 text-primary" />
-          </div>
-          <h3 className="font-semibold mb-2">Secure Payments</h3>
-          <p className="text-sm text-muted-foreground">
-            Pay online securely with Stripe
-          </p>
-        </div>
+      
     </div>
   );
 }
