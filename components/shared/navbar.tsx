@@ -19,29 +19,61 @@ export function Navbar() {
                 <Link href="/" className="text-2xl font-bold">
                     Salon 
                 </Link>
-            </div>
 
-            <div className="flex items-center gap-6">
-                <Link href="/services" className="text-sm font-medium hover:underline">
-                    Services
-                </Link>
+                <div className="flex items-center gap-6">
+                    <Link href="/services" className="text-sm font-medium hover:underline">
+                        Services
+                    </Link>
 
-                {session ? (
-                    <>
-                        <Link href="/my-appointments" className="text-sm font-medium hover:underline">
-                            My Appointments
-                        </Link>
+                    {session ? (
+                        <>
+                            <Link href="/my-appointments" className="text-sm font-medium hover:underline">
+                                My Appointments
+                            </Link>
 
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm">
-                                    {session.user?.name || session.user?.email}
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </>
-                )}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" size="sm">
+                                        {session.user?.name || session.user?.email}
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuItem asChild>
+                                        <Link href="/my-appointments" className="cursor-pointer">
+                                            <Calendar className="mr-2 h-4 w-4" />
+                                            My Appointments
+                                        </Link>
+                                    </DropdownMenuItem>
+
+                                    {session.user.role === "ADMIN" && (
+                                       <>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem asChild>
+                                            <Link href="/admin/dashboard" className="cursor-pointer">
+                                                <LayoutDashboard className="mr-2 h-4 w-4" />
+                                                Admin Dashboard
+                                            </Link>
+                                        </DropdownMenuItem>
+                                       </>
+                                    )}
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem
+                                        onClick={() => signOut()}
+                                        className="cursor-pointer text-red-600"
+                                    >
+                                        <LogOut className="mr-2 h-4 w-4" />
+                                        Sign Out
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </>
+                    ) : (
+                        <Button asChild size="sm">
+                            <Link href="/auth/signin">Sign In</Link>
+                        </Button>
+                    )}
+                </div>
             </div>
         </nav>
+    )
+}
