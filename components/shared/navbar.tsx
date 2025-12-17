@@ -16,7 +16,7 @@ export function Navbar() {
     const { data: session } = useSession()
 
     return (
-        <nav className="bg-white border-b shadow-sm">
+        <nav className="bg-white border-b shadow-sm dark:bg-gray-950 dark:border-gray-800">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                 <Link href="/" className="text-2xl font-bold">
                     CutQueue 
@@ -26,7 +26,7 @@ export function Navbar() {
                     <Link href="/services" className="text-sm font-medium hover:underline">
                         Services
                     </Link>
-
+                    <ThemeToggle />
                     {session ? (
                         <>
                             <Link href="/my-appointments" className="text-sm font-medium hover:underline">
