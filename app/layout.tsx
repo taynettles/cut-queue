@@ -6,7 +6,7 @@ import { Providers } from "@/components/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Salon Booking System",
+  title: "CutQueue Booking System",
   description: "Book your next appointment with ease",
 };
 

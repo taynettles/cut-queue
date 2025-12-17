@@ -10,6 +10,7 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { Calendar, User, LogOut, LayoutDashboard } from "lucide-react"
+import { ThemeToggle } from "../theme-toggle"
 
 export function Navbar() {
     const { data: session } = useSession()
@@ -18,7 +19,7 @@ export function Navbar() {
         <nav className="bg-white border-b shadow-sm">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                 <Link href="/" className="text-2xl font-bold">
-                    Salon 
+                    CutQueue 
                 </Link>
 
                 <div className="flex items-center gap-6">
