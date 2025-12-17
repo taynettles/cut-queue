@@ -1,3 +1,6 @@
+import type { Service } from "@prisma/client"
+
+
 export default function AdminServicesPage() {
   return (
     <div>

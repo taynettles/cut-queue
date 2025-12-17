@@ -26,7 +26,6 @@ export function Navbar() {
                     <Link href="/services" className="text-sm font-medium hover:underline">
                         Services
                     </Link>
-                    <ThemeToggle />
                     {session ? (
                         <>
                             <Link href="/my-appointments" className="text-sm font-medium hover:underline">
@@ -74,6 +73,7 @@ export function Navbar() {
                             <Link href="/auth/signin">Sign In</Link>
                         </Button>
                     )}
+                    <ThemeToggle />
                 </div>
             </div>
         </nav>
