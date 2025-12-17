@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db"
 import { ServiceCard } from "@/components/booking/service-card"
-import type { Service } from "@prisma/client"
+import type { Service } from "@/types"
 
 async function getServices() {
   const services = await prisma.service.findMany({
