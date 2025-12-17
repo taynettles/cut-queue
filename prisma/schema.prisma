@@ -5,11 +5,75 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String      @id @default(cuid())
+  email       String      @unique
+  name        String?
+  password    String?
+  role        Role        @default(CUSTOMER)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  appointments  Appointment[]
+}
+
+model Service {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  description String?
+  price       Int         // price in cents
+  duration    Int         // duration in minutes
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  appointments  Appointment[]
+}
+
+model Appointment {
+  id          String      @id @default(cuid())
+  userId      String
+  serviceId   String
+  startTime   DateTime
+  endTime     DateTime
+  status      AppointmentStatus @default(PENDING)
+  stripePaymentId String?
+  notes       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user       User        @relation(fields: [userId], references: [id])
+  service    Service     @relation(fields: [serviceId], references: [id])
+
+  @@index([userId])
+  @@index([serviceId])
+  @@index([startTime])
+}
+
+model BusinessSettings {
+  id              String   @id @default(cuid())
+  openTime        String   // e.g., "09:00"
+  closeTime       String   // e.g., "17:00"
+  workDays        Int[]   // e.g., [1,2,3,4,5] for Mon-Fri
+  bookingBuffer   Int      @default(15) // in minutes
+  updatedAt       DateTime @updatedAt
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
 }
